@@ -1,4 +1,4 @@
-package com.suit.inserface;
+package com.suit.inTerface;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
