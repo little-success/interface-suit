@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class InserfaceSuitApplication {
+public class InterfaceSuitApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(InserfaceSuitApplication.class, args);
+        SpringApplication.run(InterfaceSuitApplication.class, args);
     }
 
 }
