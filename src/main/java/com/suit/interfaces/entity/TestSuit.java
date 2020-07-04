@@ -1,16 +1,46 @@
 package com.suit.interfaces.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Null;
 import java.util.Date;
 
 @Data
 public class TestSuit {
+    @JsonIgnore
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Null(message = "id必须为空")
+    @Column(name = "id")
+    @ApiModelProperty(value = "套件ID", name = "id")
     private int id;
+
+    @Column(name = "suit_name")
+    @NotBlank(message = "套件名称不能为空")
+    @ApiModelProperty(value = "套件名称", name = "suitName", required = true, example = "")
     private String suitName;
+
+    @Column(name = "business_type")
+    @ApiModelProperty(value = "业务类型", name = "businessType", required = true, example = "")
     private Integer businessType;
-    private String describe;
+
+    @Column(name = "describes")
+    @ApiModelProperty(value = "套件描述", name = "describe", required = true, example = "")
+    private String describes;
+
+    @JsonIgnore
+    @Column(name = "create_time")
     private Date createTime;
-    private Date updataTime;
+
+    @JsonIgnore
+    @Column(name = "update_time")
+    private Date updateTime;
 
 }
 
