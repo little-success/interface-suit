@@ -59,7 +59,7 @@ public class HeaderInformationController {
 
 
     @GetMapping("/delete")
-    @ApiOperation(value = "删除用例")
+    @ApiOperation(value = "删除信息头")
     @ApiImplicitParams({
             @ApiImplicitParam(value = "ID",name = "id",dataType = "int",required = true,defaultValue = "1")
     })
@@ -75,6 +75,22 @@ public class HeaderInformationController {
         return ResponseResult.successWithData(headers);
     }
 
+    @GetMapping("/findByName")
+    @ApiOperation(value = "通过header标题查找")
+    @ApiImplicitParams({
+            @ApiImplicitParam(value = "header_name",name = "headerName",dataType = "String",defaultValue = "String")
+    })
+    @ApiResponses({
+            @ApiResponse(code = 200,message = "成功！"),
+            @ApiResponse(code = 401,message = "未授权"),
+            @ApiResponse(code = 404,message = "请求路径不存在"),
+            @ApiResponse(code = 500, message = "服务器内部错误")
+    })
+    public ResponseResult<Optional<HeaderInformation>> findByName(String headerName){
+        Optional<HeaderInformation> headerInformation = headerInformationService.findByName(headerName);
+        return ResponseResult.successWithData(headerInformation);
+    }
+
 
     @PostMapping("/saveHeader")
     @ApiOperation(value = "新增信息头")
@@ -85,27 +101,28 @@ public class HeaderInformationController {
             @ApiResponse(code = 500, message = "服务器内部错误")
     })
     public ResponseResult<HeaderInformation> saveHeader(@Validated @RequestBody HeaderInformation headerInformation){
-        HeaderInformation headerInformation1 = headerInformationService.save(headerInformation);
-        return ResponseResult.successWithData(headerInformation1);
+        try {
+            HeaderInformation headerInformation1 = headerInformationService.save(headerInformation);
+            return ResponseResult.successWithData(headerInformation1);
+
+        }catch (Exception e){
+            return ResponseResult.failWithCodeAndMsg(500,"新增失败");
+        }
+
     }
 
 
 
     @PostMapping("/changeHeader")
     @ApiOperation(value = "更新信息头")
-    @ApiImplicitParams({
-            @ApiImplicitParam(value = "ID",name = "id",dataType = "int",required = true,defaultValue = "1"),
-            @ApiImplicitParam(value = "header_name",name = "headerName",dataType = "String",required = true,defaultValue = ""),
-            @ApiImplicitParam(value = "header_info",name = "headerInfo",dataType = "String",required = true,defaultValue = "{\"Content-Type\":\"application/json;charset=UTF-8\"}")
-    })
     @ApiResponses({
             @ApiResponse(code = 200,message = "成功！"),
             @ApiResponse(code = 401,message = "未授权"),
             @ApiResponse(code = 404,message = "请求路径不存在"),
             @ApiResponse(code = 500, message = "服务器内部错误")
     })
-    public ResponseResult<Optional<HeaderInformation>> changeHeader(Long id,String headerName,String headerInfo){
-        headerInformationService.change(id,headerName,headerInfo);
+    public ResponseResult<Optional<HeaderInformation>> changeHeader(Long id,@Validated @RequestBody HeaderInformation headerInformation){
+        headerInformationService.change(id,headerInformation);
         Optional<HeaderInformation> header = headerInformationService.findHeaderInformationById(id);
         return ResponseResult.successWithData(header);
     }
@@ -121,6 +138,23 @@ public class HeaderInformationController {
     })
     public ResponseResult<List<HeaderInformation>> findAll(){
         List<HeaderInformation> headers = headerInformationService.findAll();
+        return ResponseResult.successWithData(headers);
+    }
+
+
+    @PostMapping("/findByType")
+    @ApiOperation(value = "通过类型查询信息头")
+    @ApiImplicitParams({
+            @ApiImplicitParam(value = "header_type", name = "headerType", dataType = "String", required = true, defaultValue = "String")
+    })
+    @ApiResponses({
+            @ApiResponse(code = 200,message = "成功！"),
+            @ApiResponse(code = 401,message = "未授权"),
+            @ApiResponse(code = 404,message = "请求路径不存在"),
+            @ApiResponse(code = 500, message = "服务器内部错误")
+    })
+    public ResponseResult<List<HeaderInformation>> findByType(String headerType){
+        List<HeaderInformation> headers = headerInformationService.findByType(headerType);
         return ResponseResult.successWithData(headers);
     }
 }

@@ -5,6 +5,8 @@ import com.suit.interfaces.entity.HeaderInformation;
 import com.suit.interfaces.service.HeaderInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +35,14 @@ public class HeaderInformationServiceImpl implements HeaderInformationService {
     }
 
     @Override
+    public List<HeaderInformation> findByType(String headerType) {
+        return headerInformationRepository.findByType(headerType);
+    }
+
+    @Override
     public HeaderInformation save(HeaderInformation headerInformation) {
+        headerInformation.setCreateTime(new Date());
+        headerInformation.setUpdateTime(new Date());
         return headerInformationRepository.save(headerInformation);
     }
 
@@ -43,8 +52,14 @@ public class HeaderInformationServiceImpl implements HeaderInformationService {
     }
 
     @Override
-    public void change(Long id, String headerName, String headerInfo) {
-        headerInformationRepository.change(id,headerName,headerInfo);
+    public Optional<HeaderInformation> findByName(String headerName) {
+        return Optional.ofNullable(headerInformationRepository.findByName(headerName));
+    }
+
+    @Override
+    public void change(Long id,HeaderInformation headerInformation) {
+        headerInformationRepository.change(id, headerInformation.getHeaderName(), headerInformation.getHeaderInfo(), headerInformation.getBusinessType(), new Date());
+
     }
 
     @Override
