@@ -1,5 +1,7 @@
 package com.suit.interfaces.entity;
 
+import com.alibaba.fastjson.JSONObject;
+import com.suit.interfaces.util.JsonParseUtil;
 import lombok.Data;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -33,6 +35,10 @@ public class HeaderInformation {
     @ApiModelProperty(value = "header标题", name = "headerName", required = true, example = "")
     private String headerName;
 
+//    public void setHeaderInfo(JSONObject headerInfo) {
+//        this.headerInfo = JsonParseUtil.parseJson(headerInfo);
+//    }
+
     @Column(name = "header_info")
     @NotBlank(message = "header内容不能为空")
     @ApiModelProperty(value = "header内容", name = "headerInfo", required = true, example = "{\"Content-Type\":\"application/json;charset=UTF-8\"}")
@@ -49,5 +55,8 @@ public class HeaderInformation {
     @Column(name = "update_time")
     @ApiModelProperty(value = "更新时间", name = "updateTime", required = true, example = "")
     private Date  updateTime;
+
+
+
 
 }

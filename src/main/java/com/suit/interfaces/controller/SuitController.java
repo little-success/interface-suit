@@ -8,8 +8,7 @@ import javax.annotation.Resource;
 @Controller
 public class SuitController {
 
-    @Resource
-    private SuitService suitService;
+
 
     public static void main(String[] args) {
     }

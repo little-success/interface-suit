@@ -1,22 +1,8 @@
 package com.suit.interfaces.util;
-import com.alibaba.fastjson.JSON;
-import org.apache.http.HttpEntity;
-import org.apache.http.util.EntityUtils;
-
-import java.io.*;
+import com.alibaba.fastjson.JSONObject;
 public class JsonParseUtil {
-    /**
 
-     */
-//    public static String jsonToString(JSON entity) throws IOException {
-//        HttpEntity httpEntity = entity.toJSONString();
-//        EntityUtils.toString(entity, "UTF-8");
-//       return content;
-//    }
-
-
-
-    public static String parseJson(JSON json){
+    public static String parseJson(JSONObject json){
         return json.toString();
     }
 

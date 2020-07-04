@@ -1,7 +1,8 @@
-package com.suit.interfaces.service;
+package com.suit.interfaces.service.impl;
 
 import com.suit.interfaces.dao.HeaderInformationRepository;
 import com.suit.interfaces.entity.HeaderInformation;
+import com.suit.interfaces.service.HeaderInformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.Optional;
  * @date 2020/7/3
  */
 @Service
-public class HeaderInformationServiceImpl implements HeaderInformationService{
+public class HeaderInformationServiceImpl implements HeaderInformationService {
 
     @Autowired
     private HeaderInformationRepository headerInformationRepository;

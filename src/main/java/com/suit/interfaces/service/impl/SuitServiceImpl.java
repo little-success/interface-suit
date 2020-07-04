@@ -4,6 +4,7 @@ import com.suit.interfaces.dao.TestSuitMapper;
 import com.suit.interfaces.entity.TestSuit;
 import com.suit.interfaces.service.SuitService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.Date;

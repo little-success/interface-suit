@@ -19,10 +19,19 @@ import org.junit.Test;
 public class TestJsonParseUtil {
     JSONObject object = new JSONObject();
     @Test
-    void parseJson(){
+    public void parseJson(){
         object.put("111","222");
         System.out.println(object);
+        String string = object.toString();
+        System.out.println(string);
     }
 
+    @Test
+    public void parseString(){
+        object.put("111","222");
+        String string = JsonParseUtil.parseJson(object);
+        System.out.println(string);
+
+    }
 
 }
