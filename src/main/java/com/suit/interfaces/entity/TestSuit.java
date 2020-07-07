@@ -1,6 +1,7 @@
 package com.suit.interfaces.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.models.auth.In;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -9,17 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Null;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
-public class TestSuit {
-    @JsonIgnore
+public class TestSuit implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Null(message = "id必须为空")
     @Column(name = "id")
     @ApiModelProperty(value = "套件ID", name = "id")
-    private int id;
+    private Integer id;
 
     @Column(name = "suit_name")
     @NotBlank(message = "套件名称不能为空")

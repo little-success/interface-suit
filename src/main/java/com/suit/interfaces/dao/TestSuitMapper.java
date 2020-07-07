@@ -12,9 +12,13 @@ public interface TestSuitMapper {
 
     TestSuit selectBySuitName(String suitName);
 
-    int updateByPrimaryKeySelective(TestSuit testSuit);
+    Boolean updateByPrimaryKeySelective(TestSuit testSuit);
 
     List<TestSuit> querySuitItem(TestSuit testSuit);
 
     List<TestSuit> selectByBusinessType(Integer type);
+
+    List<TestSuit> selectSuitList();
+
+    TestSuit selectById(Integer id);
 }

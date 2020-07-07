@@ -115,4 +115,17 @@
         from test_suit
         where business_type = #{businessType,jdbcType=VARCHAR}
     </select>
+
+    <select id="selectSuitList"  resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from test_suit
+    </select>
+
+    <select id="selectById" parameterType="java.lang.Integer"  resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from test_suit
+        where id = #{id,jdbcType=BIGINT}
+    </select>
 </mapper>

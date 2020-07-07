@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.suit.interfaces.dao.InterfaceMapper">
+    <resultMap id="BaseResultMap" type="com.suit.interfaces.entity.InterfaceDetails">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="suit_id" jdbcType="BIGINT" property="suitId" />
+        <result column="host_id" jdbcType="BIGINT" property="hostId" />
+        <result column="interface_name" jdbcType="VARCHAR" property="interfaceName" />
+        <result column="request_mode" jdbcType="BIGINT" property="requestMode" />
+        <result column="request_path" jdbcType="VARCHAR" property="requestPath" />
+        <result column="describes" jdbcType="VARCHAR" property="describes" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, suit_id, host_id, interface_name, request_mode, request_path, describes, create_time, update_time
+    </sql>
+        <delete id="delByInterface" parameterType="java.lang.Integer">
+            delete from interface_details
+            where id = #{id,jdbcType=BIGINT}
+        </delete>
+    <select id="selectByInterfaceName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from interface_details
+        where interface_name = #{interfaceName,jdbcType=VARCHAR}
+    </select>
+    <insert id="addByInterface" parameterType="com.suit.interfaces.entity.InterfaceDetails">
+        insert into interface_details
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="suitId != null">
+                suit_id,
+            </if>
+            <if test="hostId != null">
+                host_id,
+            </if>
+            <if test="interfaceName != null">
+                interface_name,
+            </if>
+            <if test="requestMode != null">
+                request_mode,
+            </if>
+          <if test="requestPath != null">
+              request_path,
+            </if>
+            <if test="describes != null">
+                describes,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="suitId != null">
+                #{suitId,jdbcType=BIGINT},
+            </if>
+            <if test="hostId != null">
+                #{hostId,jdbcType=BIGINT},
+            </if>
+            <if test="interfaceName != null">
+                #{interfaceName,jdbcType=VARCHAR},
+            </if>
+            <if test="requestMode != null">
+                #{requestMode,jdbcType=BIGINT},
+            </if>
+            <if test="requestPath != null">
+                #{requestPath,jdbcType=VARCHAR},
+            </if>
+            <if test="describes != null">
+                #{describes,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByInterface" parameterType="com.suit.interfaces.entity.InterfaceDetails">
+        update interface_details
+        <set>
+            <if test="suitId != null">
+                suit_id = #{suitId,jdbcType=BIGINT},
+            </if>
+            <if test="hostId != null">
+                host_id = #{hostId,jdbcType=BIGINT},
+            </if>
+            <if test="requestMode != null">
+                request_mode = #{requestMode,jdbcType=BIGINT},
+            </if>
+            <if test="requestPath != null">
+                request_path = #{requestPath,jdbcType=VARCHAR},
+            </if>
+            <if test="interfaceName != null">
+              interface_name = #{interfaceName,jdbcType=VARCHAR},
+            </if>
+            <if test="describes != null">
+                describes = #{describes,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="querySuitItem" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from test_suit
+        <where>
+            <if test="id != null">
+                and id = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="suitName != null">
+                and suit_name = #{suitName,jdbcType=VARCHAR}
+            </if>
+            <if test="businessType != null">
+                and  business_type = #{businessType,jdbcType=VARCHAR}
+            </if>
+            <if test="describes != null">
+                and describes = #{describes,jdbcType=VARCHAR}
+            </if>
+            <if test="createTime != null">
+                and create_Time = #{createTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from interface_details
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectByInterface"  parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from interface_details
+        where suit_id = #{suitId,jdbcType=BIGINT}
+    </select>
+</mapper>

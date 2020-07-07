@@ -3,6 +3,7 @@ package com.suit.interfaces.service.impl;
 import com.suit.interfaces.dao.TestSuitMapper;
 import com.suit.interfaces.entity.TestSuit;
 import com.suit.interfaces.service.SuitService;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -13,35 +14,24 @@ import java.util.Objects;
 
 @Service
 public class SuitServiceImpl implements SuitService {
-
-
     @Resource
     private TestSuitMapper testSuitMapper ;
 
     @Override
-    public boolean updataTestSuit(TestSuit ts) {
+    public Boolean updateTestSuit(TestSuit testSuit) {
         //查询用例集是否存在
-        TestSuit testSuit = new TestSuit();
-        if(!Objects.isNull(testSuitMapper.selectBySuitName(testSuit.getSuitName()))){
-            return false;
+        if(Objects.isNull(testSuitMapper.selectById(testSuit.getId()))){
+            throw new RuntimeException("要修改套件不存在");
         }
-        testSuit.setSuitName(ts.getSuitName());
-        testSuit.setBusinessType(ts.getBusinessType());
-        testSuit.setDescribes(ts.getDescribes());
         testSuit.setUpdateTime(new Date());
-        return testSuitMapper.updateByPrimaryKeySelective(testSuit)>0;
+        return testSuitMapper.updateByPrimaryKeySelective(testSuit);
     }
     @Override
-    public boolean saveSuit(TestSuit ts) {
+    public Boolean saveSuit(TestSuit testSuit) {
         //查询用例集是否存在
-        TestSuit testSuit = new TestSuit();
-        if(!Objects.isNull(testSuitMapper.selectBySuitName(ts.getSuitName()) )){
+        if(!Objects.isNull(testSuitMapper.selectBySuitName(testSuit.getSuitName()) )){
             return false;
-//            throw new RuntimeException("名称已存在，请重新输入");
         }
-        testSuit.setSuitName(ts.getSuitName());
-        testSuit.setBusinessType(ts.getBusinessType());
-        testSuit.setDescribes(ts.getDescribes());
         testSuit.setCreateTime(new Date());
         return testSuitMapper.insertSelective(testSuit)>0;
     }
@@ -62,5 +52,14 @@ public class SuitServiceImpl implements SuitService {
     public TestSuit querySuitName(String suitName) {
         TestSuit list = testSuitMapper.selectBySuitName(suitName);
         return list;
+    }
+    @Override
+    public List<TestSuit> findByList() {
+        return testSuitMapper.selectSuitList();
+    }
+
+    @Override
+    public TestSuit queryInsterfaceId(Integer id) {
+        return testSuitMapper.selectById(id);
     }
 }
