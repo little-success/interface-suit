@@ -1,6 +1,5 @@
-package com.suit.inTerface.testUtil;
+package com.suit.interfaces.testUtil;
 
-import com.suit.interfaces.entity.HeaderInformation;
 import com.suit.interfaces.service.HeaderInformationService;
 import org.junit.Test;
 

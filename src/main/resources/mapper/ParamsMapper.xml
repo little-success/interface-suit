@@ -8,7 +8,7 @@
         <result column="params_info" jdbcType="VARCHAR" property="paramsInfo" />
     </resultMap>
     <sql id="Base_Column_List">
-        id, interface_id, describes, params_info
+        id, interface_id, describes, params_info, intendedResult
     </sql>
     <insert id="insertByParams" parameterType="com.suit.interfaces.entity.InterfaceParams">
         insert into interface_params
@@ -65,5 +65,17 @@
         <include refid="Base_Column_List" />
         from interface_params
         where interface_id = #{interface_id,jdbcType=BIGINT}
+    </select>
+    <select id="selectByParamsInfoList"  parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+            params_info
+        from interface_params
+        where interface_id = #{interface_id,jdbcType=BIGINT}
+    </select>
+    <select id="selectByParamsInfo"  parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+            interface_id,params_info
+        from interface_params
+        where id = #{id,jdbcType=BIGINT}
     </select>
 </mapper>

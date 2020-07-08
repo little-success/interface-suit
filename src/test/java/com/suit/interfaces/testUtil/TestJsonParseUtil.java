@@ -1,4 +1,4 @@
-package com.suit.inTerface.testUtil;
+package com.suit.interfaces.testUtil;
 
 
 
