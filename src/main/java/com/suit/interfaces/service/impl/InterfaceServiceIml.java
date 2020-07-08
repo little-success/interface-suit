@@ -26,7 +26,7 @@ public class InterfaceServiceIml implements InterfaceService {
     @Override
     public Boolean updateInterface(InterfaceDetails interfaceDetails) {
         if(Objects.isNull(interfaceMapper.selectById(interfaceDetails.getId()))){
-            throw new RuntimeException("要修改的接口名不存在");
+            throw new RuntimeException("要修改的接口不存在");
         }
         if(!Objects.isNull(interfaceMapper.selectByInterfaceName(interfaceDetails.getInterfaceName()))){
             throw new RuntimeException("名称已存在,请重新修改");

@@ -3,11 +3,13 @@ package com.suit.interfaces.controller;
 import com.suit.interfaces.common.ResponseResult;
 import com.suit.interfaces.entity.InterfaceDetails;
 import com.suit.interfaces.service.InterfaceService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/interface")
+@Api(value="hosts",tags = {"接口信息"}, description = "接口信息")
 public class InterfaceDetailsController {
 
     @Autowired

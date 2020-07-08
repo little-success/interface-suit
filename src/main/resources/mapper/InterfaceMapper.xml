@@ -15,10 +15,10 @@
     <sql id="Base_Column_List">
         id, suit_id, host_id, interface_name, request_mode, request_path, describes, create_time, update_time
     </sql>
-        <delete id="delByInterface" parameterType="java.lang.Integer">
-            delete from interface_details
-            where id = #{id,jdbcType=BIGINT}
-        </delete>
+    <delete id="delByInterface" parameterType="java.lang.Integer">
+          delete from interface_details
+          where id = #{id,jdbcType=BIGINT}
+    </delete>
     <select id="selectByInterfaceName" parameterType="java.lang.String" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
