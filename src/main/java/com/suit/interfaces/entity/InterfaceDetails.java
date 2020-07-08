@@ -17,6 +17,10 @@ public class InterfaceDetails {
 
     @ApiModelProperty(value = "域名", name = "hostId")
     private Integer hostId;
+
+    @ApiModelProperty(value = "头信息", name = "headerId")
+    private Long headerId;
+
     @ApiModelProperty(value = "接口名称", name = "interfaceName")
     private String interfaceName;
     @ApiModelProperty(value = "请求方式", name = "requestMode")

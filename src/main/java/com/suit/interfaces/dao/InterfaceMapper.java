@@ -18,4 +18,5 @@ public interface InterfaceMapper {
     InterfaceDetails selectByInterfaceName(String name);
 
     InterfaceDetails selectById(Integer id);
+
 }
