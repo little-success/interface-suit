@@ -78,6 +78,10 @@ public class HostController {
 
     @PostMapping("/changeHost")
     @ApiOperation(value = "修改域名信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(value = "ID",name = "id",dataType = "long",required = true,defaultValue = "1"),
+            @ApiImplicitParam(value = "host",name = "host",dataType = "String",required = true,defaultValue = "http://www.example.com")
+    })
     @ApiResponses({
             @ApiResponse(code = 200,message = "成功！"),
             @ApiResponse(code = 401,message = "未授权"),
