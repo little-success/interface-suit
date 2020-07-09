@@ -31,9 +31,16 @@
         select
         <include refid="Base_Column_List" />
         from interface_details
-        where id != #{id,jdbcType=BIGINT}
-             and interface_name = #{interfaceName,jdbcType=VARCHAR}
-
+       /* where id != #{id,jdbcType=BIGINT}
+             and interface_name = #{interfaceName,jdbcType=VARCHAR}*/
+        <where>
+        <if test="id != null">
+            and id != #{id,jdbcType=BIGINT}
+        </if>
+        <if test="interfaceName != null">
+            and interface_name = #{interfaceName,jdbcType=VARCHAR}
+        </if>
+        </where>
     </select>
     <insert id="addByInterface" parameterType="com.suit.interfaces.entity.InterfaceDetails">
         insert into interface_details

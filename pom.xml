@@ -172,9 +172,8 @@
 
         <dependency>
             <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
+            <artifactId>spring-commons</artifactId>
             <version>4.1.2</version>
-            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.rest-assured</groupId>
@@ -182,12 +181,7 @@
             <version>4.1.2</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.rest-assured/json-path -->
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>json-path</artifactId>
-            <version>4.1.2</version>
-        </dependency>
+
 
     </dependencies>
 
