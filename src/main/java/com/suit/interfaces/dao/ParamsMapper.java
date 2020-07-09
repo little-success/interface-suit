@@ -14,4 +14,8 @@ public interface ParamsMapper {
     Boolean deleteByParams(Integer id);
 
     List<InterfaceParams> selectByParamsList(Integer interfaceId);
+
+    List<InterfaceParams> selectByParamsInfoList(Integer interfaceId);
+
+    List<InterfaceParams> selectByParamsInfo(Integer id);
 }

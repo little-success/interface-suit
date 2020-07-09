@@ -1,10 +1,8 @@
-package com.suit.inTerface.testUtil;
+package com.suit.interfaces.testUtil;
 
 import com.suit.interfaces.dao.HostRepository;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 

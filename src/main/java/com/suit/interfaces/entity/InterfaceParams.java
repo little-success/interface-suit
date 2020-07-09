@@ -1,6 +1,5 @@
 package com.suit.interfaces.entity;
 
-import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -20,6 +19,9 @@ public class InterfaceParams {
     @Column(name = "paramsInfo")
     @ApiModelProperty(value = "请求参数", name = "paramsInfo")
     private String paramsInfo;
+    @Column(name = "intendedResult")
+    @ApiModelProperty(value = "预期结果", name = "intendedResult")
+    private String intendedResult;
 }
 
 /*
