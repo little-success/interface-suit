@@ -17,8 +17,12 @@ import java.util.Optional;
 @Service
 public interface BusinessTypeService {
     boolean saveBusinessType(BusinessType businessType);
+
     boolean changeBusinessType(Long id, String typeName);
+
     List<BusinessType> findAll();
+
     Optional<BusinessType> findById(Long id);
+
     boolean deleteById(Long id);
 }

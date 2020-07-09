@@ -14,9 +14,14 @@ import java.util.Optional;
  */
 @Service
 public interface HostsService {
+
     boolean saveHost(Hosts hosts);
+
     boolean changeHost(Long id, String host);
+
     List<Hosts> findAll();
+
     Optional<Hosts> findById(Long id);
+
     boolean deleteById(Long id);
 }
