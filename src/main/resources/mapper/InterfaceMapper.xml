@@ -5,6 +5,7 @@
         <id column="id" jdbcType="BIGINT" property="id" />
         <result column="suit_id" jdbcType="BIGINT" property="suitId" />
         <result column="host_id" jdbcType="BIGINT" property="hostId" />
+        <result column="header_id" jdbcType="BIGINT" property="headerId" />
         <result column="interface_name" jdbcType="VARCHAR" property="interfaceName" />
         <result column="request_mode" jdbcType="BIGINT" property="requestMode" />
         <result column="request_path" jdbcType="VARCHAR" property="requestPath" />
@@ -13,7 +14,7 @@
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     </resultMap>
     <sql id="Base_Column_List">
-        id, suit_id, host_id, interface_name, request_mode, request_path, describes, create_time, update_time
+        id, suit_id, host_id, header_id, interface_name, request_mode, request_path, describes, create_time, update_time
     </sql>
     <delete id="delByInterface" parameterType="java.lang.Integer">
           delete from interface_details
@@ -24,6 +25,15 @@
         <include refid="Base_Column_List" />
         from interface_details
         where interface_name = #{interfaceName,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectByInterfaceBesidesName" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from interface_details
+        where id != #{id,jdbcType=BIGINT}
+             and interface_name = #{interfaceName,jdbcType=VARCHAR}
+
     </select>
     <insert id="addByInterface" parameterType="com.suit.interfaces.entity.InterfaceDetails">
         insert into interface_details
@@ -36,6 +46,9 @@
             </if>
             <if test="hostId != null">
                 host_id,
+            </if>
+          <if test="headerId != null">
+              header_id,
             </if>
             <if test="interfaceName != null">
                 interface_name,
@@ -66,6 +79,9 @@
             <if test="hostId != null">
                 #{hostId,jdbcType=BIGINT},
             </if>
+          <if test="headerId != null">
+                #{headerId,jdbcType=BIGINT},
+            </if>
             <if test="interfaceName != null">
                 #{interfaceName,jdbcType=VARCHAR},
             </if>
@@ -94,6 +110,9 @@
             </if>
             <if test="hostId != null">
                 host_id = #{hostId,jdbcType=BIGINT},
+            </if>
+          <if test="headerId != null">
+              header_id = #{hostId,jdbcType=BIGINT},
             </if>
             <if test="requestMode != null">
                 request_mode = #{requestMode,jdbcType=BIGINT},

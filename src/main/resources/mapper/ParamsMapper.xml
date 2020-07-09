@@ -6,9 +6,10 @@
         <result column="interface_id" jdbcType="BIGINT" property="interfaceId" />
         <result column="describes" jdbcType="VARCHAR" property="describes" />
         <result column="params_info" jdbcType="VARCHAR" property="paramsInfo" />
+        <result column="intended_result" jdbcType="VARCHAR" property="intendedResult" />
     </resultMap>
     <sql id="Base_Column_List">
-        id, interface_id, describes, params_info, intendedResult
+        id, interface_id, describes, params_info, intended_result
     </sql>
     <insert id="insertByParams" parameterType="com.suit.interfaces.entity.InterfaceParams">
         insert into interface_params
@@ -25,6 +26,9 @@
             <if test="paramsInfo != null">
                 params_info,
             </if>
+          <if test="intendedResult != null">
+              intended_result,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -38,6 +42,9 @@
             </if>
             <if test="paramsInfo != null">
                 #{paramsInfo,jdbcType=VARCHAR},
+            </if>
+          <if test="intendedResult != null">
+                #{intendedResult,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -56,6 +63,9 @@
             </if>
             <if test="paramsInfo != null">
                 params_info = #{paramsInfo,jdbcType=VARCHAR},
+            </if>
+            <if test="intendedResult != null">
+                intended_result = #{intendedResult,jdbcType=VARCHAR},
             </if>
         </set>
         where id = #{id,jdbcType=BIGINT}
